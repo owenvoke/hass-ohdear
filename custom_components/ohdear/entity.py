@@ -14,6 +14,7 @@ class OhDearSensorEntity(CoordinatorEntity[OhDearUpdateCoordinator], SensorEntit
         """Initialize the sensor and set the update coordinator."""
         super().__init__(coordinator)
         self.entity_description = description
+        self._attr_name = f"{self.coordinator.data['label']} {self.entity_description.name}"
         self._attr_unique_id = f"{self.coordinator.data['id']}_{description.key}"
 
     @property

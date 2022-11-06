@@ -32,7 +32,7 @@ class OhDearConfigFlow(ConfigFlow, domain=DOMAIN):
                 )
                 if site:
                     # Make sure we're not configuring the same device
-                    await self.async_set_unique_id(f'{user_input[CONF_SITE_ID]}')
+                    await self.async_set_unique_id(f'ohdear_{user_input[CONF_SITE_ID]}')
                     self._abort_if_unique_id_configured()
 
                     return self.async_create_entry(
