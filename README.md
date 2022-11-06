@@ -8,7 +8,7 @@ Add the `ohdear` folder and its contents to the `custom_components` folder in yo
 
 ### Dependencies
 
-This component relies on my `ohdear-sdk` Python package, an unofficial client for the Oh Dear API.
+This component relies on my [`ohdear-sdk` Python package](https://github.com/owenvoke/ohdear-python-sdk), an unofficial client for the Oh Dear API.
 
 ## Usage
 
