@@ -1,0 +1,18 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Oh Dear is already configured"
+        },
+        "error": {
+            "server_error": "Could not reach Oh Dear."
+        },
+        "step": {
+            "user": {
+                "data": {
+                    "api_token": "[%key:common::config_flow::data::api_token%]",
+                    "site_id": "Site id"
+                }
+            }
+        }
+    }
+}
