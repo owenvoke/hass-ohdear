@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com), and this 
 
 ## Unreleased
 
+## v0.1.1 - 2022-11-06
+
+### Changed
+- Use unique entity name
+
 ## v0.1.0 - 2022-11-06
 
 ### Added
