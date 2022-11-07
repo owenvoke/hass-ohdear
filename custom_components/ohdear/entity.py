@@ -1,8 +1,10 @@
 from homeassistant.components.sensor import SensorEntity, SensorEntityDescription
 from homeassistant.const import STATE_UNAVAILABLE
+from homeassistant.helpers.device_registry import DeviceEntryType
+from homeassistant.helpers.entity import DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
-from custom_components.ohdear import OhDearUpdateCoordinator, _LOGGER
+from . import OhDearUpdateCoordinator, _LOGGER, DOMAIN
 
 
 class OhDearSensorEntity(CoordinatorEntity[OhDearUpdateCoordinator], SensorEntity):
@@ -19,10 +21,21 @@ class OhDearSensorEntity(CoordinatorEntity[OhDearUpdateCoordinator], SensorEntit
 
     @property
     def native_value(self) -> str:
-        for check in self.coordinator.data.get('checks'):
-            if check.get('type') == self.entity_description.key:
-                if check.get('enabled'):
-                    return check.get('latest_run_result')
+        for check in self.coordinator.data['checks']:
+            if check['type'] == self.entity_description.key:
+                if check['enabled']:
+                    return check['latest_run_result']
                 else:
                     return STATE_UNAVAILABLE
         _LOGGER.warning(f'Unable to find Check entry for {self.entity_description.key} in API response')
+
+    @property
+    def device_info(self) -> DeviceInfo:
+        """Return the device info."""
+        return DeviceInfo(
+            name=self.coordinator.data['label'],
+            entry_type=DeviceEntryType.SERVICE,
+            identifiers={(DOMAIN, f'{self.coordinator.data["id"]}')},
+            manufacturer='Oh Dear',
+            configuration_url=f'https://ohdear.app/sites/{self.coordinator.data["id"]}/active-checks'
+        )

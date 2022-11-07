@@ -36,7 +36,7 @@ class OhDearConfigFlow(ConfigFlow, domain=DOMAIN):
                     self._abort_if_unique_id_configured()
 
                     return self.async_create_entry(
-                        title=f'Oh Dear ({site.get("label")})',
+                        title=f'Oh Dear ({site["label"]})',
                         data=user_input,
                     )
             except UnauthorizedException:
