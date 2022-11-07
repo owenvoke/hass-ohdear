@@ -25,7 +25,6 @@ class OhDearSensorEntity(CoordinatorEntity[OhDearUpdateCoordinator], SensorEntit
             if check['type'] == self.entity_description.key and check['enabled']:
                 return check['latest_run_result']
 
-        _LOGGER.warning(f'Unable to find Check entry for {self.entity_description.key} in API response')
         return STATE_UNAVAILABLE
 
     @property
