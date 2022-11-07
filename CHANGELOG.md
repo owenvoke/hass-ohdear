@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com), and this 
 
 ## Unreleased
 
+## v0.1.4 - 2022-11-07
+
+### Added
+- Allow customising the scan interval (default is every 5 minutes)
+
 ## v0.1.3 - 2022-11-07
 
 ### Fixed
