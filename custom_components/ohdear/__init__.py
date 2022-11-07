@@ -14,21 +14,20 @@ _LOGGER = logging.getLogger(__name__)
 PLATFORMS: list[Platform] = [Platform.SENSOR]
 
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> bool:
     ohdear_coordinator = OhDearUpdateCoordinator(
         hass=hass,
-        name=entry.title,
-        api_token=entry.data[CONF_API_TOKEN],
-        site_id=entry.data[CONF_SITE_ID],
-        update_interval=timedelta(minutes=(entry.data.get(CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL)))
+        name=config_entry.title,
+        api_token=config_entry.data[CONF_API_TOKEN],
+        site_id=config_entry.data[CONF_SITE_ID],
+        update_interval=timedelta(minutes=(config_entry.data.get(CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL)))
     )
 
     await ohdear_coordinator.async_config_entry_first_refresh()
 
-    hass.data.setdefault(DOMAIN, {})
-    hass.data[DOMAIN][entry.entry_id] = ohdear_coordinator
+    hass.data.setdefault(DOMAIN, {})[config_entry.entry_id] = ohdear_coordinator
 
-    await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
+    await hass.config_entries.async_forward_entry_setups(config_entry, PLATFORMS)
 
     return True
 
