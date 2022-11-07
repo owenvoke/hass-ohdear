@@ -1,7 +1,7 @@
 {
   "domain": "ohdear",
   "name": "Oh Dear",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "documentation": "https://github.com/owenvoke/hass-ohdear",
   "requirements": ["ohdear-sdk==0.3.6"],
   "codeowners": ["@owenvoke"],

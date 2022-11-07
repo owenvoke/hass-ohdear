@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com), and this 
 
 ## Unreleased
 
+## v0.1.5 - 2022-11-07
+
+### Changed
+- Remove unnecessary logging
+
+### Fixed
+- Resolve undefined key
+
 ## v0.1.4 - 2022-11-07
 
 ### Added
