@@ -12,7 +12,8 @@ _LOGGER = logging.getLogger(__name__)
 class OhDearUpdateCoordinator(DataUpdateCoordinator[ohdear_sdk.Site]):
     """Coordinates updates between all Oh Dear sensors defined."""
 
-    def __init__(self, hass: HomeAssistant, name: str, api_token: str, site_id: int) -> None:
+    def __init__(self, hass: HomeAssistant, name: str, api_token: str, site_id: int,
+                 update_interval: timedelta) -> None:
         self._ohdear: ohdear_sdk.OhDear = ohdear_sdk.OhDear(api_token=api_token)
         self._site_id: int = site_id
 
@@ -21,7 +22,7 @@ class OhDearUpdateCoordinator(DataUpdateCoordinator[ohdear_sdk.Site]):
             hass,
             _LOGGER,
             name=name,
-            update_interval=timedelta(minutes=5),
+            update_interval=update_interval,
         )
 
     async def _async_update_data(self) -> ohdear_sdk.Site:

@@ -1,5 +1,7 @@
 """Constants for the Oh Dear integration."""
+from typing import Final
 
-DOMAIN = 'ohdear'
+DOMAIN: Final = 'ohdear'
 
-CONF_SITE_ID = 'site_id'
+CONF_SITE_ID: Final = 'site_id'
+DEFAULT_SCAN_INTERVAL: Final = 5

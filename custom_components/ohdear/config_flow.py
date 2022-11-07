@@ -3,17 +3,18 @@ from typing import Any
 import voluptuous as vol
 
 from homeassistant.config_entries import ConfigFlow
-from homeassistant.const import CONF_API_TOKEN
+from homeassistant.const import CONF_API_TOKEN, CONF_SCAN_INTERVAL
 from homeassistant.data_entry_flow import FlowResult
 from ohdear import OhDear, NotFoundException, UnauthorizedException
 
 import homeassistant.helpers.config_validation as cv
 
-from .const import DOMAIN, CONF_SITE_ID
+from .const import DOMAIN, CONF_SITE_ID, DEFAULT_SCAN_INTERVAL
 
 CONFIG_SCHEMA = vol.Schema({
     vol.Required(CONF_SITE_ID): cv.positive_int,
     vol.Required(CONF_API_TOKEN): cv.string,
+    vol.Optional(CONF_SCAN_INTERVAL, default=DEFAULT_SCAN_INTERVAL): vol.All(vol.Coerce(int), vol.Range(min=1)),
 })
 
 

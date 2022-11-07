@@ -1,11 +1,12 @@
 """The Oh Dear integration"""
 import logging
+from datetime import timedelta
 
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import Platform, CONF_API_TOKEN
+from homeassistant.const import Platform, CONF_API_TOKEN, CONF_SCAN_INTERVAL
 from homeassistant.core import HomeAssistant
 
-from .const import DOMAIN, CONF_SITE_ID
+from .const import DOMAIN, CONF_SITE_ID, DEFAULT_SCAN_INTERVAL
 from .coordinator import OhDearUpdateCoordinator
 
 _LOGGER = logging.getLogger(__name__)
@@ -18,7 +19,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         hass=hass,
         name=entry.title,
         api_token=entry.data[CONF_API_TOKEN],
-        site_id=entry.data[CONF_SITE_ID]
+        site_id=entry.data[CONF_SITE_ID],
+        update_interval=timedelta(minutes=(entry.data[CONF_SCAN_INTERVAL] or DEFAULT_SCAN_INTERVAL))
     )
 
     await ohdear_coordinator.async_config_entry_first_refresh()
