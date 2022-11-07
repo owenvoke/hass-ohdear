@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com), and this 
 
 ## Unreleased
 
+## v0.1.2 - 2022-11-07
+
+### Added
+- Add service device information
+
 ## v0.1.1 - 2022-11-06
 
 ### Changed
