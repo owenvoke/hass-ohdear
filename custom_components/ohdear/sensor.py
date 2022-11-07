@@ -7,6 +7,7 @@ from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
+from . import OhDearUpdateCoordinator
 from .entity import OhDearSensorEntity
 
 DOMAIN = 'ohdear'
@@ -67,7 +68,7 @@ async def async_setup_entry(
     hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback
 ) -> None:
     """Set up all sensors for this entry."""
-    coordinator = hass.data[DOMAIN][entry.entry_id]
+    coordinator: OhDearUpdateCoordinator = hass.data[DOMAIN][entry.entry_id]
 
     async_add_entities(
         OhDearSensorEntity(coordinator, description) for description in SENSORS

@@ -22,12 +22,11 @@ class OhDearSensorEntity(CoordinatorEntity[OhDearUpdateCoordinator], SensorEntit
     @property
     def native_value(self) -> str:
         for check in self.coordinator.data['checks']:
-            if check['type'] == self.entity_description.key:
-                if check['enabled']:
-                    return check['latest_run_result']
-                else:
-                    return STATE_UNAVAILABLE
+            if check['type'] == self.entity_description.key and check['enabled']:
+                return check['latest_run_result']
+
         _LOGGER.warning(f'Unable to find Check entry for {self.entity_description.key} in API response')
+        return STATE_UNAVAILABLE
 
     @property
     def device_info(self) -> DeviceInfo:
