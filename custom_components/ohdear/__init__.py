@@ -20,7 +20,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         name=entry.title,
         api_token=entry.data[CONF_API_TOKEN],
         site_id=entry.data[CONF_SITE_ID],
-        update_interval=timedelta(minutes=(entry.data[CONF_SCAN_INTERVAL] or DEFAULT_SCAN_INTERVAL))
+        update_interval=timedelta(minutes=(entry.data.get(CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL)))
     )
 
     await ohdear_coordinator.async_config_entry_first_refresh()
