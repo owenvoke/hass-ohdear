@@ -1,6 +1,5 @@
 {
   "name": "Oh Dear",
   "render_readme": true,
-  "homeassistant": "2022.11.1",
-  "iot_class": "cloud_polling"
+  "homeassistant": "2022.11.1"
 }
