@@ -44,6 +44,8 @@ to know the id of the site, you can do this by browsing to the [sites](https://o
 site you want to monitor, and copying the id from the URL. Alternatively, this is shown at the bottom of the settings
 page under the API section.
 
+The "Scan interval" can also be configured, this defaults to polling the API every 5 minutes.
+
 ## Security
 
 If you discover any security related issues, please email security@voke.dev instead of using the issue tracker.
