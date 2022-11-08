@@ -10,13 +10,13 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from . import OhDearUpdateCoordinator
 from .entity import OhDearSensorEntity
 
-DOMAIN = 'ohdear'
+DOMAIN = "ohdear"
 
 _LOGGER = logging.getLogger(__name__)
 
 PLATFORMS: list[Platform] = [Platform.SENSOR]
 
-ICON = 'mdi:list-status'
+ICON = "mdi:list-status"
 
 SCAN_INTERVAL = timedelta(minutes=5)
 
