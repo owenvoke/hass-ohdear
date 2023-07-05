@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com), and this 
 
 ## Unreleased
 
+## v0.1.6 - 2023-07-05
+
+### Added
+- Add support to update interval
+
 ## v0.1.5 - 2022-11-07
 
 ### Changed
