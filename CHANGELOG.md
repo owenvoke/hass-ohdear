@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com), and this 
 
 ## Unreleased
 
+## v0.1.7 - 2023-07-05
+
+### Fixed
+- Resolve invalid return type
+
 ## v0.1.6 - 2023-07-05
 
 ### Added
