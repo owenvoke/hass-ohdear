@@ -63,7 +63,7 @@ class OhDearConfigFlow(ConfigFlow, domain=DOMAIN):
 
     @staticmethod
     @callback
-    def async_get_options_flow(config_entry: ConfigEntry) -> OhDearOptionsFlowHandler:
+    def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow:
         return OhDearOptionsFlowHandler(config_entry)
 
 
