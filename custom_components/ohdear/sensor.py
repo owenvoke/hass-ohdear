@@ -7,7 +7,7 @@ from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
-from .const import DOMAIN
+from .const import DOMAIN, DEFAULT_SCAN_INTERVAL
 from .coordinator import OhDearUpdateCoordinator
 from .entity import OhDearSensorEntity
 
@@ -17,7 +17,7 @@ PLATFORMS: list[Platform] = [Platform.SENSOR]
 
 ICON = "mdi:list-status"
 
-SCAN_INTERVAL = timedelta(minutes=5)
+SCAN_INTERVAL = DEFAULT_SCAN_INTERVAL
 
 SENSORS: tuple[SensorEntityDescription, ...] = (
     SensorEntityDescription(
