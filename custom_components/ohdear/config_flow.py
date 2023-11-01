@@ -20,9 +20,6 @@ CONFIG_SCHEMA = vol.Schema(
     {
         vol.Required(CONF_SITE_ID): cv.positive_int,
         vol.Required(CONF_API_TOKEN): cv.string,
-        vol.Optional(CONF_SCAN_INTERVAL, default=DEFAULT_SCAN_INTERVAL): vol.All(
-            vol.Coerce(int), vol.Range(min=1)
-        ),
     }
 )
 
@@ -92,18 +89,20 @@ class OhDearOptionsFlowHandler(OptionsFlow):
 
             return self.async_create_entry(title="", data=self.options)
 
+        options_schema = vol.Schema(
+            {
+                vol.Optional(
+                    CONF_SCAN_INTERVAL,
+                    default=self.config_entry.options.get(
+                        CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL
+                    ),
+                ): vol.All(vol.Coerce(int), vol.Range(min=1)),
+            }
+        )
+
         return self.async_show_form(
             step_id="init",
-            data_schema=vol.Schema(
-                {
-                    vol.Optional(
-                        CONF_SCAN_INTERVAL,
-                        default=self.config_entry.options.get(
-                            CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL
-                        ),
-                    ): vol.All(vol.Coerce(int), vol.Range(min=1)),
-                }
-            ),
+            data_schema=options_schema,
         )
 
 
