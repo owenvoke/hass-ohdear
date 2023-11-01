@@ -13,13 +13,13 @@
                     "site_id": "Site id"
                 }
             }
-        },
-        "options": {
-            "step": {
-                "init": {
-                    "data": {
-                        "scan_interval": "Change scan interval (minutes)"
-                    }
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "data": {
+                    "scan_interval": "Change scan interval (minutes)"
                 }
             }
         }
