@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com), and this 
 
 ## Unreleased
 
+## v0.1.10 - 2023-11-01
+
+### Fixed
+- Resolve use of translation strings
+
 ## v0.1.9 - 2023-11-01
 
 ### Fixed
