@@ -23,6 +23,10 @@ CONFIG_SCHEMA = vol.Schema(
     }
 )
 
+DESCRIPTION_PLACEHOLDERS = {
+    "api_tokens_url": "https://ohdear.app/user/api-tokens"
+}
+
 
 class OhDearConfigFlow(ConfigFlow, domain=DOMAIN):
     """The configuration flow for an Oh Dear system."""
@@ -55,7 +59,10 @@ class OhDearConfigFlow(ConfigFlow, domain=DOMAIN):
                 errors[CONF_API_TOKEN] = "server_error"
 
         return self.async_show_form(
-            step_id="user", data_schema=CONFIG_SCHEMA, errors=errors
+            step_id="user",
+            description_placeholders=DESCRIPTION_PLACEHOLDERS,
+            data_schema=CONFIG_SCHEMA,
+            errors=errors
         )
 
     @staticmethod

@@ -10,7 +10,11 @@
             "user": {
                 "data": {
                     "api_token": "API token",
-                    "site_id": "Site id"
+                    "site_id": "Site ID"
+                },
+                "data_description": {
+                    "api_token": "An API token, this can be generated from the [API Tokens dashboard]({api_tokens_url}).",
+                    "site_id": "The ID of the site, this can be found in the settings for the site."
                 }
             }
         }
