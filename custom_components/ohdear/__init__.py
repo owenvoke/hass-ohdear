@@ -1,4 +1,5 @@
 """The Oh Dear integration"""
+
 import logging
 from datetime import timedelta
 

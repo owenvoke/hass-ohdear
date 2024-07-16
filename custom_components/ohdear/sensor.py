@@ -17,8 +17,6 @@ PLATFORMS: list[Platform] = [Platform.SENSOR]
 
 ICON = "mdi:list-status"
 
-SCAN_INTERVAL = DEFAULT_SCAN_INTERVAL
-
 SENSORS: tuple[SensorEntityDescription, ...] = (
     SensorEntityDescription(
         key="uptime",

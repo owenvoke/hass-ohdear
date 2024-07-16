@@ -1,4 +1,5 @@
 """Constants for the Oh Dear integration."""
+
 from typing import Final
 
 DOMAIN: Final = "ohdear"

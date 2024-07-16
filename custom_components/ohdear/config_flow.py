@@ -1,5 +1,3 @@
-from typing import Any
-
 from datetime import timedelta
 import voluptuous as vol
 import logging
@@ -23,9 +21,7 @@ CONFIG_SCHEMA = vol.Schema(
     }
 )
 
-DESCRIPTION_PLACEHOLDERS = {
-    "api_tokens_url": "https://ohdear.app/user/api-tokens"
-}
+DESCRIPTION_PLACEHOLDERS = {"api_tokens_url": "https://ohdear.app/user/api-tokens"}
 
 
 class OhDearConfigFlow(ConfigFlow, domain=DOMAIN):
@@ -62,7 +58,7 @@ class OhDearConfigFlow(ConfigFlow, domain=DOMAIN):
             step_id="user",
             description_placeholders=DESCRIPTION_PLACEHOLDERS,
             data_schema=CONFIG_SCHEMA,
-            errors=errors
+            errors=errors,
         )
 
     @staticmethod
@@ -87,7 +83,7 @@ class OhDearOptionsFlowHandler(OptionsFlow):
             coordinator = self.hass.data[DOMAIN][self.config_entry.entry_id]
 
             update_interval = timedelta(
-                seconds=self.options.get(CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL)
+                minutes=self.options.get(CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL)
             )
 
             _LOGGER.debug("Updating coordinator, update_interval: %s", update_interval)
