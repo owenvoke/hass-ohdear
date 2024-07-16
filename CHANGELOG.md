@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com), and this 
 
 ## Unreleased
 
+## v0.1.11 - 2024-07-16
+
+### Fixed
+- Resolve invalid `timedelta`
+- Resolve using seconds instead of minutes for `timedelta`
+
 ## v0.1.10 - 2023-11-01
 
 ### Fixed
