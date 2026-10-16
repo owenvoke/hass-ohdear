@@ -7,6 +7,11 @@
 
 An [Oh Dear](https://ohdear.app) sensor for Home Assistant
 
+Oh Dear monitors the health of your websites: uptime, SSL certificates, broken links, DNS, scheduled tasks and more.
+This integration adds a sensor for each of the following checks on a site, showing the result of its latest run: uptime,
+performance, broken links, mixed content, certificate health, certificate transparency, DNS, application health,
+domain and scheduled tasks.
+
 ## Install
 
 ### Via HACS
