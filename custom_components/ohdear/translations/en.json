@@ -1,31 +1,95 @@
 {
-    "config": {
-        "abort": {
-            "already_configured": "Oh Dear is already configured"
-        },
-        "error": {
-            "server_error": "Could not reach Oh Dear."
-        },
-        "step": {
-            "user": {
-                "data": {
-                    "api_token": "API token",
-                    "site_id": "Site ID"
-                },
-                "data_description": {
-                    "api_token": "An API token, this can be generated from the [API Tokens dashboard]({api_tokens_url}).",
-                    "site_id": "The ID of the site, this can be found in the settings for the site."
-                }
-            }
-        }
+  "config": {
+    "abort": {
+      "already_configured": "This Oh Dear account is already configured.",
+      "cannot_connect": "Could not reach Oh Dear.",
+      "reauth_successful": "Re-authentication was successful.",
+      "wrong_account": "This API token belongs to a different Oh Dear account."
     },
-    "options": {
-        "step": {
-            "init": {
-                "data": {
-                    "scan_interval": "Change scan interval (minutes)"
-                }
-            }
+    "error": {
+      "cannot_connect": "Could not reach Oh Dear.",
+      "invalid_auth": "Invalid API token.",
+      "unknown": "Unexpected error."
+    },
+    "step": {
+      "user": {
+        "description": "Connect an Oh Dear account. You can choose which of its sites to monitor next.",
+        "data": {
+          "api_token": "API token"
+        },
+        "data_description": {
+          "api_token": "An API token, this can be generated from the [API Tokens dashboard]({api_tokens_url})."
         }
+      },
+      "sites": {
+        "title": "Choose sites",
+        "description": "Choose the sites to monitor. You can add more later from the integration page.",
+        "data": {
+          "sites": "Sites"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Re-authenticate Oh Dear",
+        "description": "The API token for this account is no longer valid. Enter a new one from the [API Tokens dashboard]({api_tokens_url}).",
+        "data": {
+          "api_token": "API token"
+        }
+      }
     }
+  },
+  "config_subentries": {
+    "site": {
+      "entry_type": "Site",
+      "initiate_flow": {
+        "user": "Add site"
+      },
+      "abort": {
+        "cannot_connect": "Could not reach Oh Dear.",
+        "entry_not_loaded": "The Oh Dear account isn't loaded. Fix it before adding sites.",
+        "no_sites": "Every site on this account is already being monitored."
+      },
+      "step": {
+        "user": {
+          "title": "Add site",
+          "data": {
+            "site_id": "Site"
+          }
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "scan_interval": "Scan interval"
+        },
+        "data_description": {
+          "scan_interval": "How often to poll Oh Dear for check results."
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "uptime": { "name": "Uptime" },
+      "performance": { "name": "Performance" },
+      "broken_links": { "name": "Broken links" },
+      "mixed_content": { "name": "Mixed content" },
+      "certificate_health": { "name": "Certificate health" },
+      "certificate_transparency": { "name": "Certificate transparency" },
+      "dns": { "name": "DNS" },
+      "application_health": { "name": "Application health" },
+      "domain": { "name": "Domain" },
+      "cron": { "name": "Scheduled tasks" }
+    }
+  },
+  "exceptions": {
+    "invalid_auth": {
+      "message": "The Oh Dear API token is no longer valid."
+    },
+    "update_failed": {
+      "message": "Could not fetch data from Oh Dear: {error}"
+    }
+  }
 }

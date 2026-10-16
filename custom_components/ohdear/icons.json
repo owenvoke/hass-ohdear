@@ -1,0 +1,16 @@
+{
+  "entity": {
+    "sensor": {
+      "uptime": { "default": "mdi:arrow-up-bold-circle-outline" },
+      "performance": { "default": "mdi:speedometer" },
+      "broken_links": { "default": "mdi:link-variant-off" },
+      "mixed_content": { "default": "mdi:shield-alert-outline" },
+      "certificate_health": { "default": "mdi:certificate-outline" },
+      "certificate_transparency": { "default": "mdi:file-certificate-outline" },
+      "dns": { "default": "mdi:dns-outline" },
+      "application_health": { "default": "mdi:heart-pulse" },
+      "domain": { "default": "mdi:web" },
+      "cron": { "default": "mdi:calendar-clock" }
+    }
+  }
+}

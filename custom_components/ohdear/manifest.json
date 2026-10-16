@@ -4,8 +4,10 @@
   "codeowners": ["@owenvoke"],
   "config_flow": true,
   "documentation": "https://github.com/owenvoke/hass-ohdear",
+  "integration_type": "service",
   "iot_class": "cloud_polling",
   "issue_tracker": "https://github.com/owenvoke/hass-ohdear/issues",
+  "loggers": ["ohdear"],
   "requirements": ["ohdear-sdk==0.3.9"],
   "version": "0.0.0"
 }

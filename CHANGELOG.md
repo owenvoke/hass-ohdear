@@ -6,6 +6,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com), and this 
 
 ## Unreleased
 
+### Added
+- Monitor several sites from one Oh Dear account, each added as a site subentry
+- Choose sites from a list instead of entering their IDs
+- Re-authentication when the API token stops working
+- `summary` and `latest_run_ended_at` attributes on check sensors
+
+### Changed
+- Require Home Assistant 2026.9 or later
+- Existing entries are merged into one entry per API token, keeping entity IDs and history
+- Sensors are only created for checks the site has
+- Check sensors are unavailable while their check is disabled, instead of reporting `unavailable` as a state
+
+### Fixed
+- Network errors in the config flow showed an unknown error
+- Update failures are now reported to Home Assistant, which retries them
+
 ## v0.1.11 - 2024-07-16
 
 ### Fixed

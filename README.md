@@ -40,14 +40,14 @@ client for the Oh Dear API.
 
 ## Usage
 
-This can be configured fully via the Integrations interface. Click the following link to add a new Oh Dear site.
+This can be configured fully via the Integrations interface. Click the following link to add an Oh Dear account.
 
 [![Add Integration](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start?domain=ohdear)
 
-You'll need an API key from Oh Dear, you can [generate one here](https://ohdear.app/user/api-tokens). You'll also need
-to know the id of the site, you can do this by browsing to the [sites](https://ohdear.app/sites) page, selecting the
-site you want to monitor, and copying the id from the URL. Alternatively, this is shown at the bottom of the settings
-page under the API section.
+You'll need an API token from Oh Dear, you can [generate one here](https://ohdear.app/user/api-tokens). After entering
+it, choose which of the account's sites to monitor. To add more sites later, use "Add site" on the integration's page.
+
+Each site appears as a device with a sensor for each of its checks, showing the result of the check's latest run.
 
 The "Scan interval" can also be configured, this defaults to polling the API every 5 minutes.
 

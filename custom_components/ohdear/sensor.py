@@ -1,72 +1,55 @@
-import logging
-from datetime import timedelta
+"""Sensors for Oh Dear checks."""
+
+from __future__ import annotations
 
 from homeassistant.components.sensor import SensorEntityDescription
-from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
-from .const import DOMAIN, DEFAULT_SCAN_INTERVAL
-from .coordinator import OhDearUpdateCoordinator
+from .const import CONF_SITE_ID, SUBENTRY_TYPE_SITE
+from .coordinator import OhDearConfigEntry
 from .entity import OhDearSensorEntity
 
-_LOGGER = logging.getLogger(__name__)
+PARALLEL_UPDATES = 0
 
-PLATFORMS: list[Platform] = [Platform.SENSOR]
-
-ICON = "mdi:list-status"
-
-SENSORS: tuple[SensorEntityDescription, ...] = (
-    SensorEntityDescription(
-        key="uptime",
-        name="Uptime",
-    ),
-    SensorEntityDescription(
-        key="performance",
-        name="Performance",
-    ),
-    SensorEntityDescription(
-        key="broken_links",
-        name="Broken Links",
-    ),
-    SensorEntityDescription(
-        key="mixed_content",
-        name="Mixed Content",
-    ),
-    SensorEntityDescription(
-        key="certificate_health",
-        name="Certificate Health",
-    ),
-    SensorEntityDescription(
-        key="certificate_transparency",
-        name="Certificate Transparency",
-    ),
-    SensorEntityDescription(
-        key="dns",
-        name="DNS",
-    ),
-    SensorEntityDescription(
-        key="application_health",
-        name="Application Health",
-    ),
-    SensorEntityDescription(
-        key="domain",
-        name="Domain",
-    ),
-    SensorEntityDescription(
-        key="cron",
-        name="Scheduled Tasks",
-    ),
+SENSORS: tuple[SensorEntityDescription, ...] = tuple(
+    SensorEntityDescription(key=key, translation_key=key)
+    for key in (
+        "uptime",
+        "performance",
+        "broken_links",
+        "mixed_content",
+        "certificate_health",
+        "certificate_transparency",
+        "dns",
+        "application_health",
+        "domain",
+        "cron",
+    )
 )
 
 
 async def async_setup_entry(
-    hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback
+    hass: HomeAssistant,
+    entry: OhDearConfigEntry,
+    async_add_entities: AddConfigEntryEntitiesCallback,
 ) -> None:
-    """Set up all sensors for this entry."""
-    coordinator: OhDearUpdateCoordinator = hass.data[DOMAIN][entry.entry_id]
+    """Set up a sensor for each check of each configured site."""
+    coordinator = entry.runtime_data
 
-    async_add_entities(
-        OhDearSensorEntity(coordinator, description) for description in SENSORS
-    )
+    for subentry_id, subentry in entry.subentries.items():
+        if subentry.subentry_type != SUBENTRY_TYPE_SITE:
+            continue
+
+        site_id: int = subentry.data[CONF_SITE_ID]
+        site = coordinator.data.get(site_id)
+        check_types = {check["type"] for check in site["checks"]} if site else set()
+
+        async_add_entities(
+            (
+                OhDearSensorEntity(coordinator, description, site_id, subentry.title)
+                for description in SENSORS
+                if description.key in check_types
+            ),
+            config_subentry_id=subentry_id,
+        )
