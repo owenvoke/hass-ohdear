@@ -89,7 +89,7 @@ async def test_migrate_v1_entries(hass: HomeAssistant, mock_ohdear: MagicMock) -
     entity_registry = er.async_get(hass)
     device_registry = dr.async_get(hass)
 
-    for entry, site_id in ((alpha, 1), (beta, 2), (other, 1)):
+    for entry in (alpha, beta, other):
         entry.add_to_hass(hass)
     for entry, site_id in ((alpha, 1), (beta, 2)):
         device_registry.async_get_or_create(

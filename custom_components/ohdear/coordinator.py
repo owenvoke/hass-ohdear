@@ -14,6 +14,7 @@ from homeassistant.const import CONF_API_TOKEN, CONF_SCAN_INTERVAL
 from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
+
 from ohdear import (
     NotFoundException,
     OhDear,

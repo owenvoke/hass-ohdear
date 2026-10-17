@@ -41,9 +41,8 @@ SITES = {1: make_site(1, "Alpha"), 2: make_site(2, "Beta"), 3: make_site(3, "Gam
 
 
 @pytest.fixture(autouse=True)
-def auto_enable_custom_integrations(enable_custom_integrations):
+def auto_enable_custom_integrations(enable_custom_integrations: None) -> None:
     """Enable custom integrations in every test."""
-    yield
 
 
 @pytest.fixture

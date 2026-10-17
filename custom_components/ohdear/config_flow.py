@@ -32,6 +32,7 @@ from homeassistant.helpers.selector import (
     TextSelectorConfig,
     TextSelectorType,
 )
+
 from ohdear import OhDear, OhDearException, UnauthorizedException, UserInfo
 
 from .const import (
@@ -78,7 +79,7 @@ async def _async_get_user(
         return await hass.async_add_executor_job(OhDear(api_token=api_token).me)
     except UnauthorizedException:
         errors["base"] = "invalid_auth"
-    except (OhDearException, requests.RequestException):
+    except OhDearException, requests.RequestException:
         errors["base"] = "cannot_connect"
     except Exception:
         _LOGGER.exception("Unexpected error validating the Oh Dear API token")
@@ -135,7 +136,8 @@ class OhDearConfigFlow(ConfigFlow, domain=DOMAIN):
         self, user_input: dict[str, Any] | None = None
     ) -> ConfigFlowResult:
         """Choose which sites to monitor."""
-        assert self._api_token is not None and self._title is not None
+        assert self._api_token is not None
+        assert self._title is not None
 
         if user_input is not None:
             subentries = [
@@ -157,7 +159,7 @@ class OhDearConfigFlow(ConfigFlow, domain=DOMAIN):
             self._sites = await self.hass.async_add_executor_job(
                 _fetch_site_labels, OhDear(api_token=self._api_token)
             )
-        except (OhDearException, requests.RequestException):
+        except OhDearException, requests.RequestException:
             return self.async_abort(reason="cannot_connect")
 
         return self.async_show_form(
@@ -272,7 +274,7 @@ class SiteSubentryFlow(ConfigSubentryFlow):
             sites = await self.hass.async_add_executor_job(
                 _fetch_site_labels, entry.runtime_data.client
             )
-        except (OhDearException, requests.RequestException):
+        except OhDearException, requests.RequestException:
             return self.async_abort(reason="cannot_connect")
 
         configured = {
