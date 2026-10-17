@@ -35,7 +35,7 @@ class OhDearSensorEntity(CoordinatorEntity[OhDearUpdateCoordinator], SensorEntit
             name=site_label,
             entry_type=DeviceEntryType.SERVICE,
             manufacturer="Oh Dear",
-            configuration_url=f"https://ohdear.app/sites/{site_id}/active-checks",
+            configuration_url=f"https://ohdear.app/monitors/{site_id}/active-checks",
         )
 
     @property
