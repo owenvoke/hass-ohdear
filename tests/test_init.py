@@ -127,10 +127,8 @@ async def test_migrate_v1_entries(hass: HomeAssistant, mock_ohdear: MagicMock) -
         device = device_registry.async_get_device_by_identifier(
             (DOMAIN, str(site_id)), parent.entry_id
         )
-        assert device.config_entries == {parent.entry_id}
-        assert device.config_entries_subentries == {
-            parent.entry_id: {subentry_ids[str(site_id)]}
-        }
+        assert device.config_entry_id == parent.entry_id
+        assert device.config_subentry_id == subentry_ids[str(site_id)]
 
     # Entity IDs (and history) carry over.
     assert hass.states.get("sensor.site_1_uptime").state == "succeeded"
